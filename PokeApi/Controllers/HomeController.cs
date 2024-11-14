@@ -24,6 +24,13 @@ namespace PokeApi.Controllers
         {
             string respuesta = ApiRequest("https://pokeapi.co/api/v2/pokemon?limit=151");
             ListaPokemon resultados = JsonConvert.DeserializeObject<ListaPokemon>(respuesta);
+
+            if (resultados?.Resultados == null)
+            {
+                _logger.LogError("No se encontraron resultados en la respuesta de la API.");
+                return View("Error");
+            }
+            
             List<PokemonDetalle> listaDetalles = new List<PokemonDetalle>();
 
             foreach (var item in resultados.Resultados)
