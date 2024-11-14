@@ -2,7 +2,7 @@
 {
     public class ListaPokemon
     {
-        public int Count { get; set; }
+        [JsonProperty("results")]
         public List<Pokemon> Resultados { get; set; }
     }
 }
